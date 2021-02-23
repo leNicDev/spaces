@@ -19,13 +19,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "word",
+      "spaces",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "word",
+      "spaces",
       "kebab-case"
     ],
     "eofline": true,

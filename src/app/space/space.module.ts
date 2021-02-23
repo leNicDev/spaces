@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { SpaceRoutingModule } from './space-routing.module';
 import { SpaceComponent } from './space.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [SpaceComponent],
   imports: [
     CommonModule,
-    SpaceRoutingModule
+    SpaceRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SpaceModule { }

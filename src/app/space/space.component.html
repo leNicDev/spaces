@@ -1,1 +1,60 @@
-<p>space works!</p>
+<header>
+    <div class="logo">
+        <span class="title">Spaces</span>
+    </div>
+    <div>
+        <span class="balance" *ngIf="balance$ | async as balance" aria-label="Your AR balance">{{ balance | number }} AR</span>
+        <button type="button" class="btn" (click)="logout()">💨 Log out</button>
+    </div>
+</header>
+
+<div class="section">
+    <h1>Create a new secret</h1>
+
+    <form [formGroup]="createSecretForm" class="create-secret" (ngSubmit)="createSecret()">
+        <label>
+            <span>Secret name</span>
+            <input type="text" placeholder="deincraft.bz" formControlName="secretName">
+        </label>
+        <label>
+            <span>Username/Email (optional)</span>
+            <input type="text" placeholder="Nic" formControlName="username">
+        </label>
+        <label>
+            <span>Secret</span>
+            <input type="password" placeholder="Test123!" formControlName="secret">
+        </label>
+        <label>
+            <span>URL (optional)</span>
+            <input type="url" placeholder="https://deincraft.bz/" formControlName="url">
+        </label>
+        <label>
+            <span>Description (optional)</span>
+            <textarea placeholder="My favorite website" formControlName="description"></textarea>
+        </label>
+
+        <div class="actions">
+            <button class="btn btn-primary" type="submit">➕ Create secret</button>
+        </div>
+    </form>
+</div>
+
+<div class="section">
+    <h1>Your secrets</h1>
+
+    <div class="secrets" *ngIf="secrets$ | async as secrets">
+        <div class="secret" *ngFor="let secret of secrets">
+            <div class="secret-name">
+                <span>{{ secret.name || secret.url }}</span>
+                <button type="button" class="btn btn-primary secret-copy" aria-label="Copy secret" (click)="copySecretToClipboard(secret)">📋</button>
+            </div>
+            <div class="secret-details">
+                <ul>
+                    <li *ngIf="secret.username"><strong>Username:</strong>&nbsp;{{ secret.username }}</li>
+                    <li *ngIf="secret.url"><strong>URL:</strong>&nbsp;<a [href]="secret.url" target="_blank">{{ secret.url }}</a></li>
+                    <li *ngIf="secret.description"><strong>Description:</strong><br>{{ secret.description }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
