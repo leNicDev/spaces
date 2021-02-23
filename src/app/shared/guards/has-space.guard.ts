@@ -14,7 +14,7 @@ export class HasSpaceGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const hasSpace = !!this.state.privateKey && !!this.state.walletAddress && !!this.state.walletBalance;
+    const hasSpace = !!this.state.privateKey && !!this.state.walletAddress;
 
     if (hasSpace) {
       return true;
